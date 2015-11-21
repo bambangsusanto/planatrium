@@ -1,0 +1,47 @@
+#gallery .thumbnail{
+	width: 200px;
+	height: 200px;
+	margin: 2px;
+}
+
+#gallery .thumbnail img{
+	width: 200px;
+	height: 200px;
+}
+
+#search-form {
+	margin-top: 0px;
+	background-color: #BBB;
+	padding: 50px 0;
+}
+
+footer {
+	padding: 20px;
+	background-color: #3e3f3a;
+	color: #DDD;
+}
+
+hr {
+	border-color: #AAA;
+}
+
+form {
+	padding: 20px 0;
+}
+
+.jumbotron {
+	margin-bottom: 0;
+	border-bottom: 1px solid #CCC;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+.button-holder {
+	text-align: center;
+}
+
+.footer-text {
+	color: #DDD;
+}
