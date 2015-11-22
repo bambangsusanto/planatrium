@@ -8,7 +8,11 @@
 
     <div class="row col-md-8 col-md-offset-2">
         <div class="col-sm-4">
-            <img src="/icon/MM.gif" size="100px" class="img-circle" />
+            @if ($profile['image'])
+                <img src="/{{ $profile['image'] }}" height="200" width="200" class="img-circle" />
+            @else
+                <img src="/icons/MM.gif" height="200" width="200" class="img-circle" />
+            @endif
         </div>
         <div class="col-sm-7">
             <br />

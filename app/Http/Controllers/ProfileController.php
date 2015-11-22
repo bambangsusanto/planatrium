@@ -28,7 +28,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('profile');
+        return view('profile.profile');
     }
 
     /**
@@ -78,7 +78,7 @@ class ProfileController extends Controller
     {
         $profile = Profile::where('id', $request->id)->firstOrFail();
 
-        return view('profile_edit', [
+        return view('profile.profile_edit', [
             'profile' => $profile
         ]);
     }

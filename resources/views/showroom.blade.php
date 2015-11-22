@@ -54,7 +54,7 @@
     <div class="row">
         @foreach($row as $item)
              <article class="col-md-6">
-                <a href="/project?project_id={!! $item->id !!}"><img src="{{ $item->image}} " alt="{{ $item->title }}" width="80%"></a>
+                <a href="/project?project_id={!! $item->id !!}"><img src="{{ $item->image}} " alt="{{ $item->title }}" width="80%" height="250"></a>
                 <h3>{{ $item->title }}</h3>
                 <h5><em>By: <a href="/others_suite?user_id={!! $item->user_id !!}">{{ $profiles->find($item->user_id)->profile->first_name }} {{ $profiles->find($item->user_id)->profile->last_name }}</a></em></h5>
                 <div class="body">

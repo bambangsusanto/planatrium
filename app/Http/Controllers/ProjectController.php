@@ -18,12 +18,14 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
+        /*Method for displaying each project*/
+
         $id = $request->project_id;
         $project = Project::where('id', $id)->first();
         $profile = User::find($project['user_id'])->profile;
         $user = Auth::user();
 
-        return view('project', [
+        return view('project.project', [
             'project' => $project,
             'profile' => $profile,
             'user' => $user,
@@ -32,6 +34,7 @@ class ProjectController extends Controller
 
     public function upload(Request $request)
     {
+        /*Method for updating project image*/
         if ($request->image) {
             $user = Auth::user();
             $user_id = $user['id'];
@@ -56,10 +59,12 @@ class ProjectController extends Controller
 
     public function favorite(Request $request)
     {
-        $project = Project::all();
+        /*Method for updating the favorite status of project of a particular user*/
+        $user = Auth::user();
+        $project = Project::where('user_id', $user->id)->get();
         for ($i=0; $i<count($project); $i++) {
-            $project[$i]->favorite = 0;
-            $project[$i]->save();
+                $project[$i]->favorite = 0;
+                $project[$i]->save();
         }
 
         $project = Project::where('id', $request->project_id)->firstOrFail();
@@ -67,5 +72,37 @@ class ProjectController extends Controller
         $project->save();
 
         return redirect()->back()->with('info', "This project has been favorited!");
+    }
+
+    public function viewEdit(Request $request) {
+        return view('project.edit');
+    }
+
+    public function update(Request $request) {
+        $project = Project::where('id', $request->project_id)->firstOrFail();
+        $user = Auth::user();
+        $user_id = $user['id'];
+
+        if ($request->image) {
+            $directory = "images/" . $user['username'] . "/";
+
+            $file = $request->image;
+            $file->move($directory, $file->getClientOriginalName());
+
+            $project->image = $project->image = $directory . $file->getClientOriginalName();
+            $project->save();
+        }
+
+        if ($request->status) {
+            $project->status = $request->status;
+            $project->save();
+        }
+
+        if ($request->story) {
+            $project->story = $request->story;
+            $project->save();
+        }
+
+        return redirect('/project/?project_id=' . $project['id'])->with('info', 'This project has been updated!');
     }
 }

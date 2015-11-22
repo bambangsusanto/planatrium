@@ -112,9 +112,22 @@ Route::post('showcase', [
 ]);
 
 // Project
-Route::get('/project', [
+Route::get('/project/{project_id?}', [
     'uses' => '\App\Http\Controllers\ProjectController@index',
     'as' => 'project'
+]);
+
+// Update project info
+Route::get('/project_edit', [
+    'uses' => '\App\Http\Controllers\ProjectController@viewEdit',
+    'as' => 'project_edit.get',
+    'middleware' => 'auth',
+]);
+
+Route::post('/project_edit', [
+    'uses' => '\App\Http\Controllers\ProjectController@update',
+    'as' => 'project_edit.post',
+    'middleware' => 'auth',
 ]);
 
 // Upload image

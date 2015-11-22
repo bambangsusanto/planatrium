@@ -9,24 +9,30 @@
         <legend>Showcase your work</legend>
 
         <div class="row">
+
+            <!-- Form group for uploading image -->
             <div class="col-md-4">
                 <p><em>Upload an image: </em></p>
                 <div id="gallery"></div>
                 <br />
                 <input type="file" id="image" accept="image/*" name="image"/>
             </div>
+            <!-- Form group for uploading image -->
 
             <div class="col-md-8">
 
+                <!-- Form group for project title -->
                 <div class="form-group">
                     <label for="title" class="control-label col-sm-4">Project Title</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="title" name="title" placeholder="Project title">
                     </div>
                 </div>
+                <!-- Form group for project title -->
 
                 <div class="clearfix"></div><br />
 
+                <!-- Form group for selecting project type -->
                 <div class="form-group">
                     <label for="type" class="control-label col-sm-4">Type</label>
                     <div class="col-sm-8">
@@ -43,9 +49,11 @@
                         </select>
                     </div>
                 </div>
+                <!-- Form group for selecting project type -->
 
                 <div class="clearfix"></div><br />
 
+                <!-- Form group for setting dimension -->
                 <div class="form-group">
                     <label class="control-label col-sm-4">Dimension</label>
                     <div class="col-sm-8">
@@ -68,18 +76,22 @@
                         </div>
                     </div>
                 </div>
+                <!-- Form group for setting dimension -->
 
                 <div class="clearfix"></div><br />
 
+                <!-- Form group for inputting project location -->
                 <div class="form-group">
                     <label for="location" class="control-label col-sm-4">Project Location</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" name="location" id="location" placeholder="city, country...">
                     </div>
                 </div>
+                <!-- Form group for inputting project location -->
 
                 <div class="clearfix"></div><br />
 
+                <!-- Form group for building status -->
                 <div class="form-group">
                     <label class="control-label col-sm-4">Status: </label>
                     <div class="col-sm-8">
@@ -99,6 +111,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Form group for building status -->
 
             </div>
 
@@ -109,11 +122,12 @@
 
         <div class="clearfix"></div><br />
 
+        <!-- Form group for blogging -->
         <div class="form-group">
             <label for="story" class="control-label">About</label>
             <textarea class="form-control" type="text" id="story" name="story" value="{{ old('story') }}" aria-describedby="help-block-story" rows="10" placeholder="Blog about this project or idea.."></textarea>
-
         </div>
+        <!-- Form group for blogging -->
 
 
         <div class="clearfix"></div><br />
@@ -130,21 +144,23 @@
 @section('script')
 <script>
 $(document).ready(function() {
+
+    /*Script for dynamic front-end image uploading*/
     $("#image").on('change', function () {
 
         if (typeof (FileReader) != "undefined") {
-
             var image_holder = $("#gallery");
             image_holder.empty();
 
             var reader = new FileReader();
+
             reader.onload = function (e) {
                 $("<img />", {
                     "src": e.target.result,
                     "class": "thumbnail"
                 }).appendTo(image_holder);
-
             }
+
             image_holder.show();
             reader.readAsDataURL($(this)[0].files[0]);
         } else {
@@ -154,7 +170,6 @@ $(document).ready(function() {
 
 
 });
-
 
 </script>
 @endsection
